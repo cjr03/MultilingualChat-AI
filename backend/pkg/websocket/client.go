@@ -11,7 +11,7 @@ import (
 	"context"
 	"os"
 	gpt3 "github.com/PullRequestInc/go-gpt3"
-	"github.com/spf13/viper"
+	//"github.com/spf13/viper"
 )
 
 var langauge_translator string = "The following message should be translated into " + language + ". If it is already in " + language + " please output only the message. If it must be translated, please output only the translated message as your answer. The message is: "
