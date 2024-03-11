@@ -8,10 +8,12 @@ import (
 )
 
 import (
-	"context"
-	"os"
-	gpt3 "github.com/PullRequestInc/go-gpt3"
-	//"github.com/spf13/viper"
+    "encoding/json"
+    "github.com/go-resty/resty/v2"
+)
+
+const (
+    apiEndpoint = "https://api.openai.com/v1/chat/completions"
 )
 
 var langauge_translator string = "The following message should be translated into " + language + ". If it is already in " + language + " please output only the message. If it must be translated, please output only the translated message as your answer. The message is: "
@@ -29,20 +31,30 @@ type Message struct {
 	Body string `json:"body"`
 }
 
-func GetResponse(c *Client, client gpt3.Client, ctx context.Context, quesiton string) {
-	err := client.CompletionStreamWithEngine(ctx, gpt3.TextDavinci003Engine, gpt3.CompletionRequest{
-		Prompt: []string{
-			quesiton,
-		},
-		MaxTokens:   gpt3.IntPtr(3000),
-		Temperature: gpt3.Float32Ptr(0),
-	}, func(resp *gpt3.CompletionResponse) {
-		c.Pool.Broadcast <- Message{Type: 1, Body: resp.Choices[0].Text}
-	})
+func GetResponse(question String){
+	apiKey := ""
+	client := resty.New()
+	response, err := client.R().
+        SetAuthToken(apiKey).
+        SetHeader("Content-Type", "application/json").
+        SetBody(map[string]interface{}{
+            "model":      "gpt-3.5-turbo",
+            "messages":   []interface{}{map[string]interface{}{"role": "system", "content": question}},
+            "max_tokens": 50,
+        }).
+        Post(apiEndpoint)
 	if err != nil {
-		fmt.Println(err)
-		os.Exit(13)
-	}
+        log.Fatalf("Error while sending send the request: %v", err)
+    }
+    body := response.Body()
+    var data map[string]interface{}
+    err = json.Unmarshal(body, &data)
+    if err != nil {
+        fmt.Println("Error while decoding JSON response:", err)
+        return
+    }
+	content := data["choices"].([]interface{})[0].(map[string]interface{})["message"].(map[string]interface{})["content"].(string)
+	return content
 }
 
 func (c *Client) Read() {
@@ -57,15 +69,8 @@ func (c *Client) Read() {
 			log.Println(err)
 			return
 		}
-		message := Message{Type: messageType, Body: string(p)}
-		apiKey := "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"
-		fmt.Println("API Key:", apiKey)
-		if apiKey == "" {
-			panic("Missing API KEY")
-		}
-		ctx := context.Background()
-		client := gpt3.NewClient(apiKey)
-		GetResponse(c, client, ctx, langauge_translator + message.Body)
+		message := Message{Type: messageType, Body: GetResponse(language_translator + string(p))}
+		c.Pool.Broadcast <- message
 		fmt.Printf("Message Received: %+v\n", message)
 	}
 }
