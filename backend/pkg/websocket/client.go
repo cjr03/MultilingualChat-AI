@@ -58,7 +58,7 @@ func (c *Client) Read() {
 			return
 		}
 		message := Message{Type: messageType, Body: string(p)}
-		apiKey := "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"
+		apiKey := "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"
 		fmt.Println("API Key:", apiKey)
 		if apiKey == "" {
 			panic("Missing API KEY")
