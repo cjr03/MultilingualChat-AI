@@ -58,10 +58,7 @@ func (c *Client) Read() {
 			return
 		}
 		message := Message{Type: messageType, Body: string(p)}
-		viper.SetConfigFile(".env")
-		viper.ReadInConfig()
-		//apiKey := viper.GetString("API_KEY")
-		apiKey := os.Getenv("API_KEY")
+		apiKey := "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"
 		fmt.Println("API Key:", apiKey)
 		if apiKey == "" {
 			panic("Missing API KEY")
