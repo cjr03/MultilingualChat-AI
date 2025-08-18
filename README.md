@@ -2,6 +2,7 @@
 ![Golang](https://img.shields.io/badge/Golang-deepskyblue)
 ![React](https://img.shields.io/badge/React-dodgerblue)
 ![SCSS](https://img.shields.io/badge/SCSS-blue)
+![OpenAI](https://img.shields.io/badge/OpenAI-green)
 
 A web-based Chat App that automates cross-language communication.
 * Instant, effortless langauge translation.
