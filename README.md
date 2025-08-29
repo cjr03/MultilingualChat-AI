@@ -12,12 +12,12 @@ A real-time multilingual AI-powered chat application built with Go (backend) and
 
 - [Features](#Features)
 - [Tech Stack](#Tech-Stack)
-- [Architecture](#-architecture)
-- [Getting Started](#-getting-started)
-- [Backend Setup](#-backend-setup)
-- [Frontend Setup](#-frontend-setup)
-- [Usage](#-usage)
-- [Folder Structure](#-folder-structure)
+- [Architecture](#Architecture)
+- [Getting Started](#Getting-Started)
+- [Backend Setup](#Backend-Setup)
+- [Frontend Setup](#Frontend-Setup)
+- [Usage](#Usage)
+- [Folder Structure](#Folder-Structure)
 
 ---
 
