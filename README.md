@@ -46,12 +46,12 @@ A real-time multilingual AI-powered chat application built with Go (backend) and
 ---
 
 ## Architecture
-
+```plaintext
 Client --------------------> Server
 ^                               |
 |                               v
 |_ Language Detection & Translation
-       
+```
 **Flow**:
 - Clients connect to Server via WebSocket.
 - Backend detects the language of messages using GPT.
