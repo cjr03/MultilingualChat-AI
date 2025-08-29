@@ -1,5 +1,3 @@
----
-
 # Multilingual AI Chat
 ![Golang](https://img.shields.io/badge/Golang-deepskyblue)
 ![React](https://img.shields.io/badge/React-dodgerblue)
@@ -80,12 +78,11 @@ go mod tidy
 OPENAI_API_KEY=your_openai_api_key_here
 PORT=9000
 ```
-4. Build frontend and copy static files:
+4. Build frontend:
 ```bash
 cd ../frontend
 npm install
 npm run build
-cp -r build/* ../backend/static/
 ```
 5. Run the backend server:
 ```bash
