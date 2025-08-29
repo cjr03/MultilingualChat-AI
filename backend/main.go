@@ -2,15 +2,19 @@ package main
 
 import (
 	"fmt"
+	"log"
 	"net/http"
-	"github.com/cjr03/NativeLanguageChat/backend/pkg/websocket"
+	"os"
+	"github.com/cjr03/MultilingualChat-AI/backend/config"
+	"github.com/cjr03/MultilingualChat-AI/backend/pkg/websocket"
 )
 
 func serveWS(pool *websocket.Pool, w http.ResponseWriter, r *http.Request) {
-	fmt.Println("websocket endpoint reached")
+	fmt.Println("WebSocket endpoint reached")
 	conn, err := websocket.Upgrade(w, r)
 	if err != nil {
-		fmt.Fprintf(w, "%+v\n", err)
+		http.Error(w, fmt.Sprintf("%+v", err), http.StatusInternalServerError)
+		return
 	}
 	client := &websocket.Client{
 		Conn: conn,
@@ -20,16 +24,19 @@ func serveWS(pool *websocket.Pool, w http.ResponseWriter, r *http.Request) {
 	client.Read()
 }
 
-func setupRoutes(){
+func main() {
+	cfg := config.Load()
+
 	pool := websocket.NewPool()
 	go pool.Start()
-	http.HandleFunc("/ws", func(w http.ResponseWriter, r *http.Request) {
-		serveWS(pool,w,r) 
-	})
-}
 
-func main() {
-	fmt.Println("Cole's Project")
-	setupRoutes()
-	http.ListenAndServe(":9000", nil)
+	http.HandleFunc("/ws", func(w http.ResponseWriter, r *http.Request) {
+		serveWS(pool, w, r)
+	})
+
+	fs := http.FileServer(http.Dir("./static"))
+	http.Handle("/", fs)
+
+	fmt.Printf("Server running on port %s\n", cfg.Port)
+	log.Fatal(http.ListenAndServe(":"+cfg.Port, nil))
 }
