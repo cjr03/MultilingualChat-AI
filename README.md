@@ -10,8 +10,8 @@ A real-time multilingual AI-powered chat application built with Go (backend) and
 
 ## Table of Contents
 
-- [Features - Link](#-features)
-- [Tech Stack](#-tech-stack)
+- [Features](#Features)
+- [Tech Stack](#Tech-Stack)
 - [Architecture](#-architecture)
 - [Getting Started](#-getting-started)
 - [Backend Setup](#-backend-setup)
