@@ -7,7 +7,6 @@
 A real-time multilingual AI-powered chat application built with Go (backend) and React (frontend). The app detects user languages automatically and translates messages using OpenAI GPT models.
 
 ---
-
 ## Table of Contents
 
 - [Features](#-features)
