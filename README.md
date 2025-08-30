@@ -47,7 +47,7 @@ A real-time multilingual AI-powered chat application built with Go (backend) and
 
 ## Architecture
 ```mermaid
-flowchart TD
+flowchart LR
     A[Client] --> B[Server]
     B --> C[Language Detection & Translation]
     C --> A
