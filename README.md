@@ -50,7 +50,8 @@ A real-time multilingual AI-powered chat application built with Go (backend) and
 flowchart LR
     A[Client] --> B[Server]
     B --> C[Language Detection & Translation]
-    C --> A
+    C --> B
+    B --> A
 ```
 **Flow**:
 - Clients connect to Server via WebSocket.
