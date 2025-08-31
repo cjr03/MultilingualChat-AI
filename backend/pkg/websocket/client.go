@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"log"
 	"sync"
+	"github.com/cjr03/MultilingualChat-AI/backend/pkg/ai"
 	"github.com/gorilla/websocket"
 )
 
@@ -32,7 +33,7 @@ func (c *Client) Read() {
 			log.Println(err)
 			return
 		}
-		c.lng = GetResponse("The following is text in a specific language. Please find this language, and output only the language name itself. The text to analyze is: " + string(p))
+		c.lng = a.GetResponse("The following is text in a specific language. Please find this language, and output only the language name itself. The text to analyze is: " + string(p))
 		fmt.Printf("Language: %+v\n", c.lng)
 		message := Message{Type: messageType, Body: string(p)}
 		c.Pool.Broadcast <- message
