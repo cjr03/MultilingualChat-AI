@@ -35,10 +35,10 @@ A real-time multilingual AI-powered chat application built with Go (backend) and
 ## Screenshot & GIF
 
 ### Chat UI
-<img src="docs/start.png" width="450px">
+<img src="docs/start.png" width="800px">
 
 ### Cross Language Communication
-<img src="docs/talk.gif" width="600px">
+<img src="docs/talk.gif" width="800px">
 
 ---
 
