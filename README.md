@@ -11,6 +11,7 @@ A real-time multilingual AI-powered chat application built with Go (backend) and
 ## Table of Contents
 
 - [Features](#Features)
+- [Screenshot & GIF](#Screenshot--GIF)
 - [Tech Stack](#Tech-Stack)
 - [Architecture](#Architecture)
 - [Getting Started](#Getting-Started)
@@ -28,6 +29,16 @@ A real-time multilingual AI-powered chat application built with Go (backend) and
 - AI-powered message translation per recipient.
 - Modern, responsive UI built with React.
 - Clear separation of backend and frontend logic for maintainability.
+
+---
+
+## Screenshot & GIF
+
+### Chat UI
+<img src="docs/start.png" width="300px">
+
+### Cross Language Communication
+<img src="docs/talk.gif" width="300px">
 
 ---
 
@@ -67,8 +78,8 @@ flowchart LR
 **Backend Setup**
 1. Clone the repository:
 ```bash
-git clone https://github.com/cjr03/NativeLanguageChat.git
-cd NativeLanguageChat/backend
+git clone https://github.com/cjr03/MultilingualChat-AI.git
+cd MultilingualChat-AI/backend
 ```
 2. Install Go dependencies:
 ```bash
@@ -125,7 +136,7 @@ npm start
 ## Folder Structure
 
 ```plaintext
-NativeLanguageChat/
+MultilingualChat-AI/
 ├─ backend/
 │  ├─ main.go
 │  ├─ go.mod
@@ -152,10 +163,15 @@ NativeLanguageChat/
 │  │  │  └─ Message/
 │  │  ├─ App.js
 │  │  ├─ App.css
-│  │  └─ index.js
-│  ├─ package.json
-│  └─ package-lock.json
+│  │  ├─ App.test.js
+│  │  ├─ index.css
+│  │  ├─ index.js
+│  │  └─ reportWebVitals.js
+│  └─ package.json
 ├─ .env
+├─ docs/
+│  ├─ start.png
+│  └─ talk.gif
 ├─ README.md
 └─ .gitignore
 ```
